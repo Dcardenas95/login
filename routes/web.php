@@ -17,9 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', function () {
+Route::get('/materias', function () {
     return view('users.index');
 });
+
+
+Route::post('/materias/crear', 'MateriaController@index')->name('materia.create');
+
 
 
 
