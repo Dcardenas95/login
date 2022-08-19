@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/materias', function () {
-    return view('users.index');
-});
 
 
-Route::post('/materias/crear', 'MateriaController@index')->name('materia.create');
+
+Route::get('/materias', [CourseController::class, 'index'])->name('course.index');
+Route::get('/materias/crear', [CourseController::class, 'create'])->name('course.create');
+Route::post('/materias/guardar', [CourseController::class, 'store'])->name('course.store');
+Route::get('/materias/{course}/editar', [CourseController::class, 'edit'])->name('course.edit');
+Route::put('/materias/{course}/actualizar', [CourseController::class, 'update'])->name('course.update');
+Route::delete('/materias/{course}/eliminar', [CourseController::class, 'destroy'])->name('course.destroy');
 
 
 

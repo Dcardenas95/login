@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class MateriaController extends Controller
+use App\Http\Requests\StoreCourseValidation;
+
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +16,9 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        return view('materias.create');
-    }
+        $courses = Course::orderByDesc('id')->get();
+        return view('courses/index' ,compact('courses'));
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +27,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -32,18 +36,21 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourseValidation $request)
     {
-        //
+        $data = $request->all();
+        $course = Course::create($data);
+        return redirect()->route('course.index');
+    
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
         //
     }
@@ -51,34 +58,38 @@ class MateriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        //
+        return view('courses/edit', compact('course'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCourseValidation $request, Course $course)
     {
-        //
+        $data = $request->validated();
+        $course->update($data);
+        return redirect()->route('course.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect()->route('course.index');
+
     }
 }
