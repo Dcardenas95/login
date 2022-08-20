@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+	#Investiga sobre SoftDeletes para evitar redundancia de datos en la base de datos.
+	#Si se requiere crear un dato que ya se creó antes, sólo es restaurarlos.
     use HasFactory;
 
-    protected $table = 'courses';
+    protected $table = 'courses'; #No es necesario especificar la tabla si el modelo se llama igual
 
-    protected $fillable = 
+    protected $fillable =
     [
        'nombre',
        'creditos',
