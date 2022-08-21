@@ -41,7 +41,9 @@ class CourseController extends Controller
 		#No es necesario guardar los datos en una variable, es mejor pasar el $request->all() directamente al create
 		#Y el create no es necesario meterlo en una variable que no se va a usar, eso gasta memoria.
 		#En el redirect no es necesario aclarar la ruta, puedes pasarla como paramentro directamente a la fun redirect.
-	
+
+		#Sigue igual
+
 		$course = Course::create($request->all());
 		return redirect('course.index');
 	}

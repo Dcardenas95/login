@@ -13,6 +13,8 @@ class Course extends Model
 
     protected $table = 'courses'; #No es necesario especificar la tabla si el modelo se llama igual
 
+		#Sigue igual
+
     protected $fillable =
     [
        'nombre',
