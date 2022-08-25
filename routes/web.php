@@ -28,6 +28,20 @@ Route::get('/materias/{course}/editar', [CourseController::class, 'edit'])->name
 Route::put('/materias/{course}/actualizar', [CourseController::class, 'update'])->name('course.update');
 Route::delete('/materias/{course}/eliminar', [CourseController::class, 'destroy'])->name('course.destroy');
 
+/*
+favor revisar la implementacion de estas rutas , me da error quiero ponerle un prefijo y usar el controller
+https://laravel.com/docs/9.x/routing  -> me guie de esto
+
+
+Route::controller(CourseController::class)->prefix('materias')->group(function () {
+    Route::get('/','index')->name('course.index');
+    Route::get('/crear','crear')->name('course.create');
+    Route::post('/guardar','guardar')->name('course.store');
+    Route::get('/{course}/editar', 'edit')->name('course.edit');
+    Route::put('/{course}/actualizar', 'update')->name('course.update');
+    Route::delete('/{course}/eliminar','destroy')->name('course.destroy');
+});*/
+
 
 
 
